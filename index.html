@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>RONZZZ • Layanan Digital & Tools</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#04060a;
+    --panel:#071026;
+    --muted:#9fb0c8;
+    --accent:#4dd7ff;
+    --accent2:#6ef0c1;
+    --card:#0b1724;
+    --glass: rgba(255,255,255,0.03);
+    --radius:14px;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:linear-gradient(180deg,#02040a 0%, #051428 100%);
+    color:#eaf6ff;
+    min-height:100vh;
+    padding:28px;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  .wrap{
+    max-width:1000px;
+    margin:0 auto;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:18px;
+    padding:26px;
+    border:1px solid rgba(255,255,255,0.03);
+    box-shadow: 0 20px 60px rgba(2,6,23,0.7);
+  }
+
+  /* header / logo */
+  .header{
+    display:flex;
+    gap:18px;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    margin-bottom:18px;
+  }
+  .logo{
+    width:170px;
+    height:auto;
+    display:block;
+    border-radius:10px;
+    box-shadow:0 8px 30px rgba(77,215,255,0.06);
+    animation: logoIn .9s ease;
+  }
+  @keyframes logoIn { from{opacity:0; transform:translateY(-8px)} to{opacity:1; transform:translateY(0)} }
+
+  h1{ margin:8px 0 6px; font-size:22px; letter-spacing:0.4px; color:var(--accent2) }
+  p.lead{ margin:0; color:var(--muted); font-size:14px; max-width:820px }
+
+  /* main grid */
+  .grid{
+    display:grid;
+    grid-template-columns: 1fr 380px;
+    gap:18px;
+    margin-top:18px;
+  }
+
+  /* left column */
+  .card{
+    background:var(--card);
+    padding:18px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .services .row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px;
+    border-radius:10px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+    margin-bottom:10px;
+    align-items:center;
+  }
+  .services .title{ font-weight:700 }
+  .price{ color:var(--accent2); font-weight:700 }
+
+  .note{
+    margin-top:12px;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  /* nokos list area */
+  .nokos{
+    margin-top:14px;
+  }
+  .nokos button{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    color:#022;
+    font-weight:700;
+    border:none;
+    cursor:pointer;
+  }
+  .countries{
+    margin-top:10px;
+    background:rgba(255,255,255,0.02);
+    border-radius:10px;
+    padding:10px;
+    max-height:320px;
+    overflow:auto;
+    border:1px solid rgba(255,255,255,0.03);
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.45;
+  }
+  .country { padding:6px 8px; border-bottom:1px dashed rgba(255,255,255,0.02) }
+  .country:last-child{ border-bottom:none }
+  .country b{ color:var(--accent) }
+
+  /* right column (summary + contact) */
+  .side{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .panel{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:16px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .panel h3{ margin:0 0 8px 0; color:var(--accent) }
+  .cta{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:8px;
+  }
+  .btn{
+    display:inline-block;
+    text-decoration:none;
+    padding:12px 14px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:700;
+  }
+  .btn.tg{ background:linear-gradient(90deg,#07b6ff,#3be6c9); color:#022 }
+  .btn.wa{ background:linear-gradient(90deg,#25d366,#128c7e); color:#022 }
+  .btn.ch{ background:linear-gradient(90deg,#2f8ef6,#6e8cff); color:#022 }
+
+  .foot{ margin-top:8px; color:var(--muted); font-size:13px; text-align:center }
+
+  /* responsive */
+  @media(max-width:980px){
+    .grid{ grid-template-columns: 1fr; }
+    .side{ order:2 }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap" role="main">
+
+    <header class="header">
+      <!-- ganti ronzzz-logo.png dengan file logo kamu -->
+      <img src="ronzzz-logo.png" alt="RONZZZ — SOLO IN 2025" class="logo" />
+      <h1>RONZZZ • Layanan Digital & Tools</h1>
+      <p class="lead">Layanan pengembangan, script, template, dan konsultasi teknis — kontak admin untuk cek stock & harga. Semua layanan bersifat legal dan konsultatif.</p>
+    </header>
+
+    <div class="grid">
+      <!-- kiri: layanan + nokos -->
+      <div>
+        <section class="card services" aria-labelledby="srv">
+          <h2 id="srv" style="margin:0 0 12px;color:var(--accent)">Daftar Layanan (Informasi Harga)</h2>
+
+          <!-- Produk diubah ke istilah netral/legal -->
+          <div class="row"><div class="title">Akses Premium (Cek Bio)</div><div class="price">10K</div></div>
+          <div class="row"><div class="title">Website (Fix Merah)</div><div class="price">5K</div></div>
+          <div class="row"><div class="title">Akses Fix Merah (Bot Telegram)</div><div class="price">5K</div></div>
+          <div class="row"><div class="title">Panel Bot (Ptrodality)</div><div class="price">1K - 10K</div></div>
+          <div class="row"><div class="title">Script Telegram (Cek Bio)</div><div class="price">20K</div></div>
+          <div class="row"><div class="title">Script Telegram (Fix Merah)</div><div class="price">15K</div></div>
+          <div class="row"><div class="title">Unband WhatsApp Fresh (Permanen)</div><div class="price">30K</div></div>
+
+          <p class="note">Catatan: hubungi admin sebelum membeli untuk cek ketersediaan & detail. Jelaskan produk yang diinginkan dan sertakan ID negara (jika relevan).</p>
+        </section>
+
+        <section class="card nokos" aria-labelledby="nokos">
+          <h2 id="nokos" style="margin:0 0 10px;color:var(--accent)">KHUSUS LIST NOKOS</h2>
+          <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Gunakan <strong>ID Negara</strong> saat memesan. Klik tombol di bawah untuk menampilkan daftar lengkap negara.</p>
+          <button id="toggleCountries" type="button">Lihat / Sembunyikan Daftar Negara</button>
+
+          <div class="countries" id="countries" style="display:none; margin-top:10px;">
+            <!-- daftar negara persis seperti yang dikirim -->
+            <div class="country"><b>0</b> — Rusia</div>
+            <div class="country"><b>1</b> — Ukraina</div>
+            <div class="country"><b>2</b> — Kazakhstan</div>
+            <div class="country"><b>3</b> — Cina</div>
+            <div class="country"><b>4</b> — Filipina</div>
+            <div class="country"><b>5</b> — Myanmar</div>
+            <div class="country"><b>6</b> — Indonesia</div>
+            <div class="country"><b>7</b> — Malaysia</div>
+            <div class="country"><b>8</b> — Kenya</div>
+            <div class="country"><b>9</b> — Tanzania</div>
+            <div class="country"><b>10</b> — Vietnam</div>
+            <div class="country"><b>11</b> — Kirgizstan</div>
+            <div class="country"><b>12</b> — Brasil</div>
+            <div class="country"><b>13</b> — Israel</div>
+            <div class="country"><b>14</b> — Hong Kong</div>
+            <div class="country"><b>15</b> — Polandia</div>
+            <div class="country"><b>16</b> — Inggris</div>
+            <div class="country"><b>17</b> — Madagaskar</div>
+            <div class="country"><b>18</b> — Kongo Dr</div>
+            <div class="country"><b>19</b> — Nigeria</div>
+            <div class="country"><b>20</b> — Makau</div>
+            <div class="country"><b>21</b> — Mesir</div>
+            <div class="country"><b>22</b> — India</div>
+            <div class="country"><b>23</b> — Irlandia</div>
+            <div class="country"><b>24</b> — Kamboja</div>
+            <div class="country"><b>25</b> — Laos</div>
+            <div class="country"><b>26</b> — Haiti</div>
+            <div class="country"><b>27</b> — Pantai Gading</div>
+            <div class="country"><b>28</b> — Gambia</div>
+            <div class="country"><b>29</b> — Serbia</div>
+            <div class="country"><b>30</b> — Yaman</div>
+            <div class="country"><b>31</b> — Afrika Selatan</div>
+            <div class="country"><b>32</b> — Rumania</div>
+            <div class="country"><b>33</b> — Kolombia</div>
+            <div class="country"><b>34</b> — Estonia</div>
+            <div class="country"><b>35</b> — Azerbaijan</div>
+            <div class="country"><b>36</b> — Kanada</div>
+            <div class="country"><b>37</b> — Maroko</div>
+            <div class="country"><b>38</b> — Ghana</div>
+            <div class="country"><b>39</b> — Argentina</div>
+            <div class="country"><b>40</b> — Uzbekistan</div>
+            <div class="country"><b>41</b> — Kamerun</div>
+            <div class="country"><b>42</b> — Cad</div>
+            <div class="country"><b>43</b> — Jerman</div>
+            <div class="country"><b>44</b> — Lituania</div>
+            <div class="country"><b>45</b> — Kroasia</div>
+            <div class="country"><b>46</b> — Swedia</div>
+            <div class="country"><b>47</b> — Irak</div>
+            <div class="country"><b>48</b> — Belanda</div>
+            <div class="country"><b>49</b> — Latvia</div>
+            <div class="country"><b>50</b> — Austria</div>
+            <div class="country"><b>51</b> — Belarus</div>
+            <div class="country"><b>52</b> — Thailand</div>
+            <div class="country"><b>53</b> — Arab Saudi</div>
+            <div class="country"><b>54</b> — Meksiko</div>
+            <div class="country"><b>55</b> — Taiwan</div>
+            <div class="country"><b>56</b> — Spanyol</div>
+            <div class="country"><b>57</b> — Iran</div>
+            <div class="country"><b>58</b> — Aljazair</div>
+            <div class="country"><b>59</b> — Slovenia</div>
+            <div class="country"><b>60</b> — Bangladesh</div>
+            <div class="country"><b>61</b> — Senegal</div>
+            <div class="country"><b>62</b> — Turki</div>
+            <div class="country"><b>63</b> — Ceko</div>
+            <div class="country"><b>64</b> — Sri Lanka</div>
+            <div class="country"><b>65</b> — Peru</div>
+            <div class="country"><b>66</b> — Pakistan</div>
+            <div class="country"><b>67</b> — Selandia Baru</div>
+            <div class="country"><b>68</b> — Guinea</div>
+            <div class="country"><b>69</b> — Mali</div>
+            <div class="country"><b>70</b> — Venezuela</div>
+            <div class="country"><b>71</b> — Ethiopia</div>
+            <div class="country"><b>72</b> — Mongolia</div>
+            <div class="country"><b>73</b> — Brasil</div>
+            <div class="country"><b>74</b> — Afganistan</div>
+            <div class="country"><b>75</b> — Uganda</div>
+            <div class="country"><b>76</b> — Angola</div>
+            <div class="country"><b>77</b> — Siprus</div>
+            <div class="country"><b>78</b> — Prancis</div>
+            <div class="country"><b>79</b> — Papua Nugini</div>
+            <div class="country"><b>80</b> — Mozambik</div>
+            <div class="country"><b>81</b> — Nepal</div>
+            <div class="country"><b>82</b> — Belgia</div>
+            <div class="country"><b>83</b> — Bulgaria</div>
+            <div class="country"><b>84</b> — Hungaria</div>
+            <div class="country"><b>85</b> — Moldova</div>
+            <div class="country"><b>86</b> — Italia</div>
+            <div class="country"><b>87</b> — Paraguay</div>
+            <div class="country"><b>88</b> — Honduras</div>
+            <div class="country"><b>89</b> — Tunisia</div>
+            <div class="country"><b>90</b> — Nikaragua</div>
+            <div class="country"><b>91</b> — Timor Leste</div>
+            <div class="country"><b>92</b> — Bolivia</div>
+            <div class="country"><b>93</b> — Kosta Rika</div>
+            <div class="country"><b>94</b> — Guatemala</div>
+            <div class="country"><b>95</b> — Uni Emirat Arab</div>
+            <div class="country"><b>96</b> — Zimbabwe</div>
+            <div class="country"><b>97</b> — Puerto Rico</div>
+            <div class="country"><b>98</b> — Sudan</div>
+            <div class="country"><b>99</b> — Togo</div>
+            <div class="country"><b>100</b> — Kuwait</div>
+            <div class="country"><b>101</b> — El Salvador</div>
+            <div class="country"><b>102</b> — Libya</div>
+            <div class="country"><b>103</b> — Jamaika</div>
+            <div class="country"><b>104</b> — Trinidad Dan Tobago</div>
+            <div class="country"><b>105</b> — Ekuador</div>
+            <div class="country"><b>106</b> — Eswatini</div>
+            <div class="country"><b>107</b> — Oman</div>
+            <div class="country"><b>108</b> — Bosnia</div>
+            <div class="country"><b>109</b> — Republik Dominika</div>
+            <div class="country"><b>110</b> — Suriah</div>
+            <div class="country"><b>111</b> — Qatar</div>
+            <div class="country"><b>112</b> — Panama</div>
+            <div class="country"><b>113</b> — Kuba</div>
+            <div class="country"><b>114</b> — Mauritania</div>
+            <div class="country"><b>115</b> — Sierra Leone</div>
+            <div class="country"><b>116</b> — Yordania</div>
+            <div class="country"><b>117</b> — Portugal</div>
+            <div class="country"><b>118</b> — Barbados</div>
+            <div class="country"><b>119</b> — Burundi</div>
+            <div class="country"><b>120</b> — Benin</div>
+            <div class="country"><b>121</b> — Brunei</div>
+            <div class="country"><b>122</b> — Bahama</div>
+            <div class="country"><b>123</b> — Botswana</div>
+            <div class="country"><b>124</b> — Belize</div>
+            <div class="country"><b>125</b> — Republik Afrika Tengah</div>
+            <div class="country"><b>126</b> — Dominika</div>
+            <div class="country"><b>127</b> — Grenada</div>
+            <div class="country"><b>128</b> — Georgia</div>
+            <div class="country"><b>129</b> — Yunani</div>
+            <div class="country"><b>130</b> — Guinea Bissau</div>
+            <div class="country"><b>131</b> — Guyana</div>
+            <div class="country"><b>132</b> — Islandia</div>
+            <div class="country"><b>133</b> — Komoro</div>
+            <div class="country"><b>134</b> — Saint Kitts</div>
+            <div class="country"><b>135</b> — Liberia</div>
+            <div class="country"><b>136</b> — Lesotho</div>
+            <div class="country"><b>137</b> — Malawi</div>
+            <div class="country"><b>138</b> — Namibia</div>
+            <div class="country"><b>139</b> — Niger</div>
+            <div class="country"><b>140</b> — Rwanda</div>
+            <div class="country"><b>141</b> — Slowakia</div>
+            <div class="country"><b>142</b> — Suriname</div>
+            <div class="country"><b>143</b> — Tajikistan</div>
+            <div class="country"><b>144</b> — Monako</div>
+            <div class="country"><b>145</b> — Bahrain</div>
+            <div class="country"><b>146</b> — Reunion</div>
+            <div class="country"><b>147</b> — Zambia</div>
+            <div class="country"><b>148</b> — Armenia</div>
+            <div class="country"><b>149</b> — Somalia</div>
+            <div class="country"><b>150</b> — Kongo</div>
+            <div class="country"><b>151</b> — Chili</div>
+            <div class="country"><b>152</b> — Burkina Faso</div>
+            <div class="country"><b>153</b> — Lebanon</div>
+            <div class="country"><b>154</b> — Gabon</div>
+            <div class="country"><b>155</b> — Albania</div>
+            <div class="country"><b>156</b> — Uruguay</div>
+            <div class="country"><b>157</b> — Mauritius</div>
+            <div class="country"><b>158</b> — Bhutan</div>
+            <div class="country"><b>159</b> — Maladewa</div>
+            <div class="country"><b>160</b> — Guadeloupe</div>
+            <div class="country"><b>161</b> — Turkmenistan</div>
+            <div class="country"><b>162</b> — Guyana Perancis</div>
+            <div class="country"><b>163</b> — Finlandia</div>
+            <div class="country"><b>164</b> — Saint Lucia</div>
+            <div class="country"><b>165</b> — Luksemburg</div>
+            <div class="country"><b>166</b> — Saint Vincent Grenadines</div>
+            <div class="country"><b>167</b> — Guinea Khatulistiwa</div>
+            <div class="country"><b>168</b> — Jibuti</div>
+            <div class="country"><b>169</b> — Antigua Dan Barbuda</div>
+            <div class="country"><b>170</b> — Kepulauan Cayman</div>
+            <div class="country"><b>171</b> — Montenegro</div>
+            <div class="country"><b>172</b> — Denmark</div>
+            <div class="country"><b>173</b> — Swiss</div>
+            <div class="country"><b>174</b> — Norwegia</div>
+            <div class="country"><b>175</b> — Australia</div>
+            <div class="country"><b>176</b> — Eritrea</div>
+            <div class="country"><b>177</b> — Sudan Selatan</div>
+            <div class="country"><b>178</b> — Sao Tome Dan Prinsip</div>
+            <div class="country"><b>179</b> — Aruba</div>
+            <div class="country"><b>180</b> — Montserrat</div>
+            <div class="country"><b>181</b> — Anguilla</div>
+            <div class="country"><b>182</b> — Jepang</div>
+            <div class="country"><b>183</b> — Makedonia Utara</div>
+            <div class="country"><b>184</b> — Seychelles</div>
+            <div class="country"><b>185</b> — Kaledonia Baru</div>
+            <div class="country"><b>186</b> — Tanjung Verde</div>
+            <div class="country"><b>187</b> — Amerika Serikat</div>
+            <div class="country"><b>188</b> — Palestina</div>
+            <div class="country"><b>189</b> — Fiji</div>
+            <div class="country"><b>196</b> — Singapura</div>
+            <div class="country"><b>199</b> — Malta</div>
+            <div class="country"><b>201</b> — Gibraltar</div>
+            <div class="country"><b>203</b> — Kosovo</div>
+            <div class="country"><b>204</b> — Niue</div>
+          </div>
+
+          <p class="note" style="margin-top:12px">Cara pesan: chat admin → jelaskan produk → sebutkan <strong>ID Negara</strong> (jika ingin).</p>
+        </section>
+      </div>
+
+      <!-- kanan: kontak & ringkasan -->
+      <aside class="side">
+        <div class="panel">
+          <h3>Kontak Admin</h3>
+          <p style="margin:6px 0 0;color:var(--muted)">Telegram: <strong>@teleronz</strong><br>WhatsApp: <strong>+62 851-4294-8151</strong></p>
+          <div class="cta">
+            <a class="btn tg" href="https://t.me/teleronz" target="_blank" rel="noopener">Chat Telegram (@teleronz)</a>
+            <a class="btn wa" href="https://wa.me/6285142948151" target="_blank" rel="noopener">Chat WhatsApp (+62 851-4294-8151)</a>
+            <a class="btn ch" href="https://t.me/chanelronz" target="_blank" rel="noopener">Channel Testimonial (@chanelronz)</a>
+          </div>
+          <p class="foot">Testimonial & bukti TRX tersedia di channel. Pastikan konfirmasi via Telegram sebelum transaksi.</p>
+        </div>
+
+        <div class="panel" style="text-align:left">
+          <h3 style="margin-bottom:8px;color:var(--accent)">Petunjuk Order</h3>
+          <ol style="color:var(--muted);padding-left:18px;margin:0;font-size:14px;line-height:1.5">
+            <li>Chat admin di Telegram / WhatsApp.</li>
+            <li>Sebutkan layanan yang diinginkan dan jumlah.</li>
+            <li>Jika membutuhkan negara: lampirkan <strong>ID Negara</strong> dari daftar.</li>
+            <li>Tunggu konfirmasi ketersediaan & metode pembayaran.</li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+
+    <footer style="text-align:center;margin-top:18px;color:var(--muted);font-size:13px">
+      © 2025 RONZZZ • Layanan Digital & Konsultasi — Semua layanan bersifat legal dan sesuai ketentuan.
+    </footer>
+  </div>
+
+<script>
+  // toggle countries list
+  document.getElementById('toggleCountries').addEventListener('click', function(){
+    var el = document.getElementById('countries');
+    if (el.style.display === 'none' || el.style.display === '') {
+      el.style.display = 'block';
+      this.textContent = 'Sembunyikan Daftar Negara';
+    } else {
+      el.style.display = 'none';
+      this.textContent = 'Lihat / Sembunyikan Daftar Negara';
+    }
+  });
+</script>
+</body>
+</html>
